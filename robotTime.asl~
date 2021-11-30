@@ -10,7 +10,6 @@
 
 +!start : true <- 
 	move_towards(1, rnd);
-	clean;
 	!start.
 
 +?time(T) : true

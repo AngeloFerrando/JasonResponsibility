@@ -69,16 +69,6 @@ public class HouseEnv extends Environment {
 				addPercept("robot"+l, hob);
 				addPercept("owner", hob);
 			}
-			
-			if(i == 1) {
-				Random rnd = new Random();
-				if(rnd.nextDouble() <= 0.05) {
-					int row = rnd.nextInt(7);
-					int col = rnd.nextInt(7);
-					model.addDirt(row, col);
-					addPercept("robot"+l, Literal.parseLiteral("dirt(" + row + ", " + col + ")"));
-				}
-			}
 		}
     }
 
@@ -93,9 +83,7 @@ public class HouseEnv extends Environment {
         } else if (action.equals(clf)) { // clf = close(fridge)
             result = model.closeFridge();
 
-        } else if(action.equals(Literal.parseLiteral("clean"))) {
-			result = model.clean();
-		} else if (action.getFunctor().equals("move_towards")) {
+        } else if (action.getFunctor().equals("move_towards")) {
             int id = Integer.valueOf(action.getTerm(0).toString());
 			String l = action.getTerm(1).toString();
             Location dest = null;

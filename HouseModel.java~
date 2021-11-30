@@ -1,6 +1,5 @@
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
-import java.util.*;
 
 /** class that implements the Model of Domestic Robot application */
 public class HouseModel extends GridWorldModel {
@@ -9,7 +8,6 @@ public class HouseModel extends GridWorldModel {
     public static final int FRIDGE = 16;
     public static final int OWNER  = 32;
 	public static final int DOOR = 64;
-	public static final int DIRT = 128;
 
     // the grid size
     public static final int GSize = 7;
@@ -22,8 +20,6 @@ public class HouseModel extends GridWorldModel {
     Location lFridge = new Location(0,0);
     Location lOwner  = new Location(GSize-1,GSize-1);
 	Location lDoor = new Location(0,GSize-1);
-	
-	// boolean[][] dirtyLocs = new boolean[][Gsize];
 	
     public HouseModel() {
         // create a 7x7 grid with one mobile agent
@@ -39,10 +35,6 @@ public class HouseModel extends GridWorldModel {
         add(FRIDGE, lFridge);
         add(OWNER, lOwner);
 		add(DOOR, lDoor);
-		
-		//for(int i = 0; i < Gsize; i++) {
-		//	dirtyLocs[i] = new Location[Gsize];	
-		//}
     }
 
     boolean openFridge() {
@@ -62,17 +54,6 @@ public class HouseModel extends GridWorldModel {
             return false;
         }
     }
-	
-	void addDirt(int row, int col) {
-		//dirtyLocs[row][col] = true;
-		add(DIRT, new Location(row, col));
-	}
-	
-	boolean clean() {
-		//dirtyLocs[row][col] = false;
-		remove(DIRT, getAgPos(1));
-		return true;
-	}
 
     boolean moveTowards(int id, Location dest) {
         Location r1 = getAgPos(id);
